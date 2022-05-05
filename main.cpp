@@ -51,7 +51,20 @@ struct Wrapper
     { 
         std::cout << "Wrapper(" << typeid(val).name() << ")" << std::endl; 
     }
+
+    void print()
+    {
+        std::cout << "Wrapper::print(" << val << ")" << std::endl;
+    }
+
+    const Type& val;
 };
+
+template<>
+void Wrapper<Point>::print()
+{
+    std::cout << "Wrapper::print(" << val.toString() << ")" << std::endl;
+}
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
@@ -67,9 +80,22 @@ struct Wrapper
  Wait for my code review.
  */
 
+template<typename T>
+void variadicHelper(T first)
+{
+    Wrapper<T>(std::forward<T>(first)).print();
+}
+
+template<typename T, typename ...Args>
+void variadicHelper(T first, Args ... everythingElse)
+{
+    Wrapper<T>(std::forward<T>(first)).print();
+    variadicHelper(everythingElse...);
+}
+
+
 int main()
 {
     variadicHelper( 3, std::string("burgers"), 2.5, Point{3.f, 0.14f} );
 }
-
 
