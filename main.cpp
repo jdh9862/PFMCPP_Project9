@@ -47,9 +47,9 @@ private:
 template<typename Type>
 struct Wrapper
 {
-    Wrapper(Type&& t) : val(std::move(t)) 
-    { 
-        std::cout << "Wrapper(" << typeid(val).name() << ")" << std::endl; 
+    Wrapper(Type&& t) : val(std::move(t))
+    {
+        std::cout << "Wrapper(" << typeid(val).name() << ")" << std::endl;
     }
 
     void print()
@@ -61,10 +61,20 @@ struct Wrapper
 };
 
 template<>
-void Wrapper<Point>::print()
+struct Wrapper<Point>
 {
-    std::cout << "Wrapper::print(" << val.toString() << ")" << std::endl;
-}
+    Wrapper(const Point& t) : val(t)
+    {
+        std::cout << "Wrapper(" << typeid(val).name() << ")" << std::endl;
+    }
+
+    void print()
+    {
+        std::cout << "Wrapper::print(" << val.toString() << ")" << std::endl;
+    }
+
+    const Point& val;
+};
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
