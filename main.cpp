@@ -63,7 +63,7 @@ struct Wrapper
 template<>
 struct Wrapper<Point>
 {
-    Wrapper(const Point& t) : val(t)
+    Wrapper(Point&& t) : val(std::move(t))
     {
         std::cout << "Wrapper(" << typeid(val).name() << ")" << std::endl;
     }
