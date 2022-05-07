@@ -57,7 +57,7 @@ struct Wrapper
         std::cout << "Wrapper::print(" << val << ")" << std::endl;
     }
 
-    const Type& val;
+    Type val;
 };
 
 template<>
@@ -73,7 +73,7 @@ struct Wrapper<Point>
         std::cout << "Wrapper::print(" << val.toString() << ")" << std::endl;
     }
 
-    const Point& val;
+    Point val;
 };
 
 /*
