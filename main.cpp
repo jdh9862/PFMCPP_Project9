@@ -97,10 +97,10 @@ void variadicHelper(T first)
 }
 
 template<typename T, typename ...Args>
-void variadicHelper(T first, Args ... everythingElse)
+void variadicHelper(T&& first, Args&& ... everythingElse)
 {
     Wrapper<T>(std::forward<T>(first)).print();
-    variadicHelper(everythingElse...);
+    variadicHelper(std::forward<Args>(everythingElse)...);
 }
 
 
