@@ -80,7 +80,7 @@ void Wrapper<Point>::print()
  Wait for my code review.
  */
 
-template<typename T, typename ...Args>
+template<typename T>
 void variadicHelper(T&& first)
 {
     Wrapper<T>(std::forward<T>(first)).print();
