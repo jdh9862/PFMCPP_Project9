@@ -61,19 +61,9 @@ struct Wrapper
 };
 
 template<>
-struct Wrapper<Point>
+void Wrapper<Point>::print()
 {
-    Wrapper(Point&& t) : val(std::move(t))
-    {
-        std::cout << "Wrapper(" << typeid(val).name() << ")" << std::endl;
-    }
-
-    void print()
-    {
         std::cout << "Wrapper::print(" << val.toString() << ")" << std::endl;
-    }
-
-    Point val;
 };
 
 /*
