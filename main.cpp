@@ -80,7 +80,11 @@ void Wrapper<Point>::print()
  Wait for my code review.
  */
 
-main.cpp:92:6: note: 'variadicHelper' should be declared prior to the call site <<<<<<<<<<<<<<<<<
+template<typename T>
+void variadicHelper(T&& first)
+{
+    Wrapper<T>(std::forward<T>(first)).print();
+}
 
 template<typename T, typename ...Args>
 void variadicHelper(T&& first, Args&& ... everythingElse)
