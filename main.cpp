@@ -64,14 +64,14 @@ template<>
 void Wrapper<Point>::print()
 {
         std::cout << "Wrapper::print(" << val.toString() << ")" << std::endl;
-};
+}
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
 
  Commit your changes by clicking on the Source Control panel on the left, entering a message, and click [Commit and push].
- 
- If you didn't already: 
+
+ If you didn't already:
     Make a pull request after you make your first commit
     pin the pull request link and this repl.it link to our DM thread in a single message.
 
@@ -80,8 +80,10 @@ void Wrapper<Point>::print()
  Wait for my code review.
  */
 
-void variadicHelper()
+template<typename T, typename ...Args>
+void variadicHelper(T&& first)
 {
+    Wrapper<T>(std::forward<T>(first)).print();
 }
 
 template<typename T, typename ...Args>
@@ -91,9 +93,14 @@ void variadicHelper(T&& first, Args&& ... everythingElse)
     variadicHelper(std::forward<Args>(everythingElse)...);
 }
 
+void variadicHelper()
+{
+}
+
 
 int main()
 {
     variadicHelper( 3, std::string("burgers"), 2.5, Point{3.f, 0.14f} );
+    variadicHelper( 3 );//, std::string("burgers"), 2.5, Point{3.f, 0.14f} );
 }
 
