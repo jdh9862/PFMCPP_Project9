@@ -91,7 +91,7 @@ struct Wrapper<Point>
  */
 
 template<typename T>
-void variadicHelper(T first)
+void variadicHelper(T&& first)
 {
     Wrapper<T>(std::forward<T>(first)).print();
 }
